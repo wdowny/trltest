@@ -50,5 +50,5 @@ class Servant(BaseHTTPRequestHandler):
         res+= 'rq_404_nf '+ str(self.counters[404]) +'\n'
         self.textResponse(res)
 
-httpServer = HTTPServer(('localhost', 8080), Servant)
+httpServer = HTTPServer(('', 8080), Servant)
 httpServer.serve_forever()
