@@ -51,8 +51,15 @@ Here is <a href="/metrics">link to metrics</a>. And <a href="/nowhere">this link
 ''')
         
     def evt_metrics(self):
-        res = 'rq_total ' + str(sum(self.counters.values())) +'\n'
+        res = ''
+        res+= '# HELP rq_total Total HTTP requests\n'
+        res+= '# TYPE rq_total counter\n'
+        res+= 'rq_total ' + str(sum(self.counters.values())) +'\n'
+        res+= '# HELP rq_200_ok 200/OK HTTP requests\n'
+        res+= '# TYPE rq_200_ok counter\n'
         res+= 'rq_200_ok '+ str(self.counters[200]) +'\n'
+        res+= '# HELP rq_404_nf 404/not found HTTP requests\n'
+        res+= '# TYPE rq_404_nf counter\n'
         res+= 'rq_404_nf '+ str(self.counters[404]) +'\n'
         self.textResponse(res)
 
